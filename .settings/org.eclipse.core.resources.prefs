@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main.py=iso-8859-1
+encoding//src/netextract=ISO-8859-1
+encoding//src/netextract/constants.py=iso-8859-1
+encoding//src/netextract/routes.py=iso-8859-1
+encoding//src/netextract/vehicle.py=iso-8859-1

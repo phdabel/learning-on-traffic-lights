@@ -1,0 +1,24 @@
+<routes>
+    <!-- IDA HORIZONTAL -->
+	<route id="1" edges="A1B1 B1C1 C1D1 D1E1 E1F1 F1G1 G1H1"/>
+	<route id="3" edges="A3B3 B3C3 C3D3 D3E3 E3F3 F3G3 G3H3"/>
+	<route id="5" edges="A5B5 B5C5 C5D5 D5E5 E5F5 F5G5 G5H5"/>
+	<route id="7" edges="A7B7 B7C7 C7D7 D7E7 E7F7 F7G7 G7H7"/>
+	<!-- VINDA HORIZONTAL -->
+	<route id="2" edges="H2G2 G2F2 F2E2 E2D2 D2C2 C2B2 B2A2"/>
+	<route id="4" edges="H4G4 G4F4 F4E4 E4D4 D4C4 C4B4 B4A4"/>
+	<route id="6" edges="H6G6 G6F6 F6E6 E6D6 D6C6 C6B6 B6A6"/>
+	<route id="8" edges="H8G8 G8F8 F8E8 E8D8 D8C8 C8B8 B8A8"/>
+	
+	<!-- IDA VERTICAL -->
+	<route id="b" edges="B1B2 B2B3 B3B4 B4B5 B5B6 B6B7 B7B8" />
+	<route id="d" edges="D1D2 D2D3 D3D4 D4D5 D5D6 D6D7 D7D8" />
+	<route id="f" edges="F1F2 F2F3 F3F4 F4F5 F5F6 F6F7 F7F8" />
+	<route id="h" edges="H1H2 H2H3 H3H4 H4H5 H5H6 H6H7 H7H8" />
+	
+	<!-- VINDA VERTICAL -->
+	<route id="g" edges="G8G7 G7G6 G6G5 G5G4 G4G3 G3G2 G2G1" />
+	<route id="e" edges="E8E7 E7E6 E6E5 E5E4 E4E3 E3E2 E2E1" />
+	<route id="c" edges="C8C7 C7C6 C6C5 C5C4 C4C3 C3C2 C2C1" />
+	<route id="a" edges="A8A7 A7A6 A6A5 A5A4 A4A3 A3A2 A2A1" />
+</routes>
