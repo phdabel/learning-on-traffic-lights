@@ -1,0 +1,467 @@
+	<tlLogic id="B2" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B2" type="static" programID="1" offset="0">
+        <phase duration="18" state="gr"/>
+        <phase duration="42" state="rG"/>
+    </tlLogic>
+	<tlLogic id="B2" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="B3" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B3" type="static" programID="1" offset="0">
+        <phase duration="18" state="gr"/>
+        <phase duration="42" state="rG"/>
+    </tlLogic>
+	<tlLogic id="B3" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="B4" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B4" type="static" programID="1" offset="0">
+        <phase duration="18" state="gr"/>
+        <phase duration="42" state="rG"/>
+    </tlLogic>
+	<tlLogic id="B4" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="B5" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B5" type="static" programID="1" offset="0">
+        <phase duration="18" state="gr"/>
+        <phase duration="42" state="rG"/>
+    </tlLogic>
+	<tlLogic id="B5" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="B6" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B6" type="static" programID="1" offset="0">
+        <phase duration="18" state="gr"/>
+        <phase duration="42" state="rG"/>
+    </tlLogic>
+	<tlLogic id="B6" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+	
+    <tlLogic id="B7" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B7" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="B7" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="C2" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C2" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C2" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="C3" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C3" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C3" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="C4" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C4" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C4" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="C5" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C5" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C5" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="C6" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C6" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C6" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+	
+    <tlLogic id="C7" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C7" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="C7" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="D2" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D2" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D2" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="D3" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D3" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D3" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="D4" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D4" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D4" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="D5" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D5" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D5" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="D6" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D6" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D6" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+	
+    <tlLogic id="D7" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D7" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="D7" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="E2" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E2" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E2" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="E3" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E3" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E3" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="E4" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E4" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E4" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="E5" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E5" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E5" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="E6" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E6" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E6" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+	
+    <tlLogic id="E7" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E7" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="E7" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="F2" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F2" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F2" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="F3" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F3" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F3" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="F4" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F4" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F4" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="F5" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F5" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F5" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="F6" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F6" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F6" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+	
+    <tlLogic id="F7" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F7" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="F7" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="G2" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G2" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G2" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="G3" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G3" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G3" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="G4" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G4" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G4" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="G5" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G5" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G5" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+    
+	<tlLogic id="G6" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G6" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G6" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
+	
+    <tlLogic id="G7" type="static" programID="0" offset="0">
+        <phase duration="30" state="Gr"/>
+        <phase duration="30" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G7" type="static" programID="1" offset="0">
+        <phase duration="18" state="Gr"/>
+        <phase duration="42" state="rg"/>
+    </tlLogic>
+	<tlLogic id="G7" type="static" programID="2" offset="0">
+        <phase duration="42" state="gr"/>
+        <phase duration="18" state="rG"/>
+    </tlLogic>
