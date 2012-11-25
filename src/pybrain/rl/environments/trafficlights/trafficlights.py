@@ -14,14 +14,14 @@ class TrafficLights(Environment):
 	indim = len(actions)
 	outdim = len(states)
 	
-	def getSensors(self, horizontal_induction_loop, vertical_induction_loop):
-		loopH = traci.inductionloop.getLastStepOccupancy(horizontal_induction_loop)
-		loopV = traci.inductionloop.getLastStepOccupancy(vertical_induction_loop)
-		loopHp = loopH / (loopH+loopV)
-		loopVp = loopV / (loopH+loopV)
-		if (loopVp - loopHp) > 0.2:
+	def getSensors(self, horizontal_edge, vertical_edge):
+		hLast = traci.edge.getLastStepLength(horizontal_edge)
+		vLast = traci.edge.getLastStepLength(vertical_edge) 
+		lastHPerCent = hLast / (hLast+vLast)
+		lastVPerCent = vLast / (hLast+vLast)
+		if (lastVPerCent - lastHPerCent) > 0.2:
 			return 1
-		elif (loopHp - loopVp) > 0.2:
+		elif (lastHPerCent - lastVPerCent) > 0.2:
 			return 2
 		else:
 			return 0

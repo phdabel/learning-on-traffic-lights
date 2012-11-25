@@ -3,6 +3,7 @@ __author__ = 'Abel Correa, phd.abel@gmail.com'
 from scipy import clip, asarray
 from numpy import *
 from pybrain.rl.environments.task import Task
+from pybrain.rl.agents.lowlevelagent import LowLevelAgent
 import traci
 
 class Plan(Task):
@@ -11,27 +12,22 @@ class Plan(Task):
 	bangPenalty = -1
 	defaultPenalty = 0
 	finalReward = 1
-	#dados do induction_loop vertical e horizontal
-	horizontal_induction_loop = None
-	vertical_induction_loop = None
 	#dados do trafficlight
 	trafficlight = None
 
-	def __init__(self, environment, horizontal_induction_loop, vertical_induction_loop, trafficlight):
+	def __init__(self, environment, trafficlight):
 		#atribui o ambiente que deve ser passado como parametro apos ser instanciado
 		#juntamente com os ids do induction loop vertical e horizontal
 		self.env = environment
-		self.horizontal_induction_loop  = horizontal_induction_loop
-		self.vertical_induction_loop = vertical_induction_loop
-		self.trafficlight = trafficlight
-		
+		if(isinstance(trafficlight, LowLevelAgent)):
+			self.trafficlight = trafficlight
 	
 	def performAction(self, action):
 		return self.env.performAction(action)
 	
 	def getObservation(self):
 		#retorna estado do ambiente
-		sensors = self.env.getSensors(self.horizontal_induction_loop, self.vertical_induction_loop)
+		sensors = self.env.getSensors(self.trafficlight.horizontal_edge, self.trafficlight.vertical_edge)
 		return sensors
 	
 	def getReward(self):

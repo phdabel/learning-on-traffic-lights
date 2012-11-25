@@ -13,16 +13,16 @@ import random
 from random import choice
 import sys, os
 
-#if __name__ == '__main__':
-print "oi"
-traci.init()
-route = Routes()
-route.setFile("net")
-traci.route.getIDList()
-#
-#print route.getRoutes()
-carro = []
-for i in range(2000):
-    rota = route.getRandomRoute()
-    carro.append(Vehicle(str(i), rota[0]))
-    traci.simulationStep()
+if __name__ == '__main__':
+    print "oi"
+    traci.init()
+    route = Routes()
+    route.setFile("net")
+    prob = 0.8
+    carro = []
+
+for i in range(20000):
+    if(random.random() <= prob):
+        rota = route.getRandomRoute()
+        carro.append(Vehicle(str(i), rota[0]))
+        traci.simulationStep()
