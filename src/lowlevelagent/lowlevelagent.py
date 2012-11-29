@@ -1,10 +1,6 @@
-#import sys, os
-import traci
-import random
-#from random import choice
+from traci import trafficlights
+from traci import lane
 from pybrain.rl.agents import LearningAgent
-#from pybrain.rl.learners.valuebased import ActionValueTable
-from trafficlights import TrafficLights
 
 
 class LowLevelAgent(LearningAgent):
@@ -13,18 +9,18 @@ class LowLevelAgent(LearningAgent):
 	horizontal_edge = None
 	vertical_edge = None
 	
-	def __init__(self, id, module, learner=None):
+	def __init__(self, _id, module, learner=None):
 		#define variaveis da class
-		self.id = id
-		self.horizontal_edge = traci.lane.getEdgeID(traci.trafficlights.getControlledLanes(str(id))[0])
-		self.vertical_edge = traci.lane.getEdgeID(traci.trafficlights.getControlledLanes(str(id))[2])
+		self.id = _id
+		self.horizontal_edge = lane.getEdgeID(trafficlights.getControlledLanes(self.id)[0])
+		self.vertical_edge = lane.getEdgeID(trafficlights.getControlledLanes(str(_id))[2])
 		#define variaveis da classe pai
 		LearningAgent.__init__(self, module, learner)
 		
 	def getAction(self):
-		action = random.choice(TrafficLights.actions)
-		traci.trafficlights.setPhase(self.id,action)
-		traci.simulationStep()
+		action = LearningAgent.getAction(self)
+		#action = random.choice(TrafficLights().actions)
+		
 		self.lastaction = action
 		return action
 	

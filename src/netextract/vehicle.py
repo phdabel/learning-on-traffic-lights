@@ -4,7 +4,7 @@ Created on 23/11/2012
 
 @author: Abel Correa
 '''
-import traci
+from traci import *
 
 
 class Vehicle(object):
@@ -29,5 +29,6 @@ class Vehicle(object):
     def __addCarTraci__(self):
         '''
             Adiciona o carro na simulação
-        '''
-        traci.vehicle.add(self.id, self.route)
+        '''      
+          
+        vehicle.add(self.id, self.route)

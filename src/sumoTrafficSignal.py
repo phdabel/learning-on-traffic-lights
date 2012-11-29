@@ -3,8 +3,8 @@ import traci
 from random import choice
 import random
 sys.path.append(os.path.join(os.path.dirname(__file__),'/net'))
-from trafficlights import TrafficLights
-from trafficlights.plan import Plan
+from trafficlights_env.trafficlights import TrafficLights
+from trafficlights_env.plan_env import Plan
 from lowlevelagent import LowLevelAgent
 from pybrain.rl.learners.valuebased import ActionValueTable
 from pybrain.rl.agents import LearningAgent
