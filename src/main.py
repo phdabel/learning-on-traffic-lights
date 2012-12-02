@@ -16,10 +16,12 @@ from trafficlights_env.plan_env.plan import Plan
 from lowlevelagent import LowLevelAgent
 from pybrain.rl.learners.valuebased import ActionValueTable
 from pybrain.rl.learners import Q
-from pybrain.rl.experiments import ContinuousExperiment
+from pybrain.rl.experiments import Experiment
+from maexperiment.multiagentexperiment import MultiAgentExperiment
 from pybrain.rl.explorers import BoltzmannExplorer
 import pylab
 from math import *
+from plotting.lineplot import LinePlot
 
 if __name__ == '__main__':
     print "oi"
@@ -28,6 +30,12 @@ if __name__ == '__main__':
     route.setFile("net")
     prob = 0.7
     
+    #definicao do plot
+    plt = LinePlot()
+    plt.addLabelPlot(['Veiculos Parados', 'Total'])
+    plt.addTitle("Veiculos durante a Simulacao")
+    plt.labelX("Tempo")
+    plt.labelY("Veiculos")
     #definir action-value table
     #numero de estados e 3
     # 1 -> vertical > horizontal
@@ -38,8 +46,9 @@ if __name__ == '__main__':
     # plan 1 -> 18v-42h
     # plan 2 -> 42v-18h
     agent = []
-    learner = Q(0.5,0.0)
-    learner._setExplorer(BoltzmannExplorer())
+    learner = [] #Q(0.8,0.4)
+    
+    #learner._setExplorer(BoltzmannExplorer())
 
     #definir Q-Learning Agent
     #alpha 0.5
@@ -56,14 +65,19 @@ if __name__ == '__main__':
         
     ct = 0
     
-    av_table = []
+    
+    av_table = [] #ActionValueTable(3,3)
+    #av_table.initialize(0.)
+    #agent = LowLevelAgent(trafficlightsids[35], av_table, learner)
     #av_table = ActionValueTable(3,3)
     #av_table.initialize(0.)
     
     for tls in trafficlightsids:
+        learner.append(Q(0.5,0.))
+        learner[ct]._setExplorer(BoltzmannExplorer())
         av_table.append(ActionValueTable(3,3))
         av_table[ct].initialize(0.)
-        agent.append(LowLevelAgent(tls, av_table[ct], learner))
+        agent.append(LowLevelAgent(tls, av_table[ct], learner[ct]))
         ct += 1
         
 
@@ -74,38 +88,53 @@ if __name__ == '__main__':
     #definir tarefa - interacao com ambiente
     for a in agent:
         tasks.append(Plan(env, a))
-    
+    #task = Plan(env,agent)
     #experimentar
-    experiments = []
-    for a in range(36):
-        experiments.append(ContinuousExperiment(tasks[a],agent[a]))
+    #experiments = []
+    #for a in range(36):
+    #    experiments.append(Experiment(tasks[a],agent[a]))
+    e = MultiAgentExperiment(tasks, agent)
     
     ct = 0
-    media_aprendizagem = []
+    veiculos_parados = []
+    total_veiculos = []
     qtd = []
     carro = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-    for i in range(2000):
+    
+    carCount = 0
+    
+    for i in range(1000):
         ct += 1
         #quantidade de carros que serao adicionados durante um simulation step
-        addCar = 2
+        addCar = 1
         if(random.random() <= prob):
             for aC in range(addCar):
                 rota = route.getRandomRoute()
                 Vehicle(str(i)+carro[aC], rota[0])
-            traci.simulationStep()
-            
+                carCount += 1
+        traci.simulationStep()
+        for a in agent:
+            a.verifyVerticalLoad()
+            a.verifyHorizontalLoad()
+        
         if(ct == 60):
-            ct = 0
-            for y in range(36):
-                print "Experimento: %i com agente %i - %s" % (i, y, agent[y].id)
-                #print experiments[y].agent.module.getActionValues(0)
-                #print experiments[y].agent.module.getActionValues(1)
-                #print experiments[y].agent.module.getActionValues(2)
-                experiments[y].doInteractionsAndLearn(1)
-                agent[y].learn()
-                agent[y].reset()
-                print av_table[y].params.reshape(3,3)
+            for a in agent:
+                a.averageVerticalLoad(ct)
+                a.averageHorizontalLoad(ct)
                 
-                pylab.plot(x,y)
-                pylab.draw()
-                #pylab.pcolor(av_table[y].params.reshape(3,3).max(1).reshape(1,3))
+            ct = 0
+            e.doInteractionsAndLearn(1)
+
+            plt.addXValue(i)
+            veiculosParados = 0
+            totalVeiculos = 0
+            for i in traci.edge.getIDList():
+                veiculosParados = veiculosParados + traci.edge.getLastStepHaltingNumber(i)
+                totalVeiculos = totalVeiculos + traci.edge.getLastStepVehicleNumber(i)
+    
+            veiculos_parados.append(veiculosParados)
+            total_veiculos.append(totalVeiculos)
+
+    plt.addYValues(veiculos_parados)
+    plt.addYValues(total_veiculos)
+    plt.showPlot()

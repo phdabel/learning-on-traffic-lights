@@ -12,6 +12,7 @@ class Plan(Task):
 	bangPenalty = -1
 	defaultPenalty = 0
 	finalReward = 1
+	
 	#dados do trafficlight
 	trafficlight = None
 
@@ -27,24 +28,52 @@ class Plan(Task):
 	
 	def getObservation(self):
 		#retorna estado do ambiente
-		sensors = self.env.getSensors(self.trafficlight.horizontal_edge, self.trafficlight.vertical_edge)
+		sensors = self.env.getSensors(self.trafficlight)
 		return sensors
 	
 	def getReward(self):
 		currentAction = traci.trafficlights.getProgram(self.trafficlight.id)
 		currentAction = int(currentAction)
-				
+		#plan 1 - vertical > horizontal
+		#plan 2 - horizontal > vertical
+		#plan 0 - horizontal = vertical
+		
 		if(self.getObservation()[0] == 0 and currentAction == 0):
-			cur_reward = self.finalReward
+			#cur_reward = self.finalReward
+			return 1 - self._calcReward()
 		elif(self.getObservation()[0] == 2 and currentAction == 1):
-			cur_reward = self.finalReward
+			#cur_reward = self.finalReward
+			return 1 - self._calcReward()
 		elif(self.getObservation()[0] == 1 and currentAction == 2):
-			cur_reward = self.finalReward
+			#cur_reward = self.finalReward
+			return 1 - self._calcReward()
 		elif(self.getObservation()[0] == 2 and currentAction == 2):
-			cur_reward = self.bangPenalty
+			#cur_reward = self.bangPenalty
+			return 1 - self._calcReward()
 		elif(self.getObservation()[0] == 1 and currentAction == 1):
-			cur_reward = self.bangPenalty
+			#cur_reward = self.bangPenalty
+			return 1 - self._calcReward()
 		else:
-			cur_reward = self.defaultPenalty
+			#cur_reward = self.defaultPenalty
+			return 1 - self._calcReward()
 
-		return cur_reward
+		#return cur_reward
+		#return 1 - self._calcReward()
+	
+	def _calcReward(self):
+		
+		horizontal = self.trafficlight.getLastAverageHorizontal()
+		vertical = self.trafficlight.getLastAverageVertical()
+	
+		if(horizontal == 0):
+			horizontal = 1
+		if(vertical == 0):
+			vertical = 1
+		#print "Horizontal - %f Vertical - %f" % (horizontal, vertical)
+			
+		if(horizontal > vertical):
+			return vertical / horizontal
+		elif(vertical > horizontal):
+			return horizontal / vertical
+		else:
+			return 0

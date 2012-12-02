@@ -14,21 +14,33 @@ class TrafficLights(Environment):
 	indim = len(actions)
 	outdim = len(states)
 	
-	def getSensors(self, horizontal_edge, vertical_edge):
-		hLast = 0.1 + traci.edge.getLastStepLength(horizontal_edge)
-		vLast = 0.1 + traci.edge.getLastStepLength(vertical_edge)
-		#print hLast
-		#print vLast
+	
+	
+	def getSensors(self, trafficlight):
+		
+		hLast = trafficlight.getLastAverageHorizontal()
+		vLast = trafficlight.getLastAverageVertical()
+		
+		if(hLast == 0):
+			hLast = 1
+		if(vLast == 0):
+			vLast = 1
+		
 		lastHPerCent = hLast / (hLast+vLast)
 		lastVPerCent = vLast / (hLast+vLast)
+		
+			
 		if (lastVPerCent - lastHPerCent) > 0.2:
+			#print "Percentual Vertical %f e Horizontal %f" % (lastVPerCent, lastHPerCent)
 			return [1,]
 		elif (lastHPerCent - lastVPerCent) > 0.2:
+			#print "Percentual Vertical %f e Horizontal %f" % (lastVPerCent, lastHPerCent)
 			return [2,]
 		else:
+			#print "Percentual Vertical %f e Horizontal %f" % (lastVPerCent, lastHPerCent)
 			return [0,]
 	
 	def performAction(self, trafficlight, action):
 		acao = int(action[0])
 		traci.trafficlights.setProgram(trafficlight.id,str(acao))
-		print "Acao %i realizada" % (action)
+	
