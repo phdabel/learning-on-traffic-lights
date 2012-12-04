@@ -22,13 +22,15 @@ from pybrain.rl.explorers import BoltzmannExplorer
 import pylab
 from math import *
 from plotting.lineplot import LinePlot
+from supervisor.agent import SupervisorAgent
 
 if __name__ == '__main__':
-    print "oi"
+    
     traci.init()
     route = Routes()
     route.setFile("net")
-    prob = 0.7
+    probH = 0.1
+    probV = 0.3
     
     #definicao do plot
     plt = LinePlot()
@@ -47,7 +49,7 @@ if __name__ == '__main__':
     # plan 2 -> 42v-18h
     agent = []
     learner = [] #Q(0.8,0.4)
-    
+    super = []
     #learner._setExplorer(BoltzmannExplorer())
 
     #definir Q-Learning Agent
@@ -74,12 +76,30 @@ if __name__ == '__main__':
     
     for tls in trafficlightsids:
         learner.append(Q(0.5,0.))
-        learner[ct]._setExplorer(BoltzmannExplorer())
+        learner[ct]._setExplorer(BoltzmannExplorer(500))
         av_table.append(ActionValueTable(3,3))
         av_table[ct].initialize(0.)
         agent.append(LowLevelAgent(tls, av_table[ct], learner[ct]))
         ct += 1
-        
+    
+    
+    ####
+    #### adiciona os supervisores e seus supervisionados
+    ct = 1
+    cts = 0
+    for a in agent:
+        if(ct == 1):
+            super.append(SupervisorAgent(0.8))
+            super[cts].addLowLevelAgent(a)
+            ct += 1
+        elif(ct == 2):
+            super[cts].addLowLevelAgent(a)
+            ct +=1
+        elif(ct == 3):
+            super[cts].addLowLevelAgent(a)
+            ct = 0
+            cts += 1
+
 
     #definir ambiente
     env = TrafficLights()
@@ -103,15 +123,24 @@ if __name__ == '__main__':
     
     carCount = 0
     
-    for i in range(1000):
+    
+    for i in range(8000):
         ct += 1
         #quantidade de carros que serao adicionados durante um simulation step
         addCar = 1
-        if(random.random() <= prob):
-            for aC in range(addCar):
-                rota = route.getRandomRoute()
-                Vehicle(str(i)+carro[aC], rota[0])
-                carCount += 1
+        rota = route.getRandomRoute()
+        if( (rota[0]) in ['1','2','3','4','5','6','7','8']):
+            
+            if(random.random() <= probH):
+                for aC in range(addCar):
+                    Vehicle(str(i)+carro[aC], rota[0])
+                    carCount += 1
+        else:
+            if(random.random() <= probV):
+                for aC in range(addCar):
+                    Vehicle(str(i)+carro[aC], rota[0])
+                    carCount += 1
+                    
         traci.simulationStep()
         for a in agent:
             a.verifyVerticalLoad()
@@ -119,21 +148,24 @@ if __name__ == '__main__':
         
         if(ct == 60):
             for a in agent:
-                a.averageVerticalLoad(ct)
-                a.averageHorizontalLoad(ct)
+                a.averageVerticalLoad()
+                a.averageHorizontalLoad()
                 
             ct = 0
             e.doInteractionsAndLearn(1)
-
-            plt.addXValue(i)
-            veiculosParados = 0
-            totalVeiculos = 0
-            for i in traci.edge.getIDList():
-                veiculosParados = veiculosParados + traci.edge.getLastStepHaltingNumber(i)
-                totalVeiculos = totalVeiculos + traci.edge.getLastStepVehicleNumber(i)
+            for s in super:
+                s.observeLowLevel()
+              
+        #plotagem - nao mexer e deixar no final          
+        plt.addXValue(i)
+        veiculosParados = 0
+        totalVeiculos = 0
+        for edge in traci.edge.getIDList():
+            veiculosParados = veiculosParados + traci.edge.getLastStepHaltingNumber(edge)
+            totalVeiculos = totalVeiculos + traci.edge.getLastStepVehicleNumber(edge)
     
-            veiculos_parados.append(veiculosParados)
-            total_veiculos.append(totalVeiculos)
+        veiculos_parados.append(veiculosParados)
+        total_veiculos.append(totalVeiculos)
 
     plt.addYValues(veiculos_parados)
     plt.addYValues(total_veiculos)

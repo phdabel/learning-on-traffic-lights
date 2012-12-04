@@ -44,10 +44,7 @@ class MultiAgentExperiment(Experiment):
             self.agents[i].learn()
             self.agents[i].reset()
             
-            print self.agents[i].id
-            print self.agents[i].module.getActionValues(0)
-            print self.agents[i].module.getActionValues(1)
-            print self.agents[i].module.getActionValues(2)
+            
             
 
         

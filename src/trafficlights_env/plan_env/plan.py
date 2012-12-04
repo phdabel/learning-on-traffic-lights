@@ -29,6 +29,7 @@ class Plan(Task):
 	def getObservation(self):
 		#retorna estado do ambiente
 		sensors = self.env.getSensors(self.trafficlight)
+		#print "observacao %d" % sensors
 		return sensors
 	
 	def getReward(self):
@@ -38,19 +39,19 @@ class Plan(Task):
 		#plan 2 - horizontal > vertical
 		#plan 0 - horizontal = vertical
 		
-		if(self.getObservation()[0] == 0 and currentAction == 0):
+		if(self.getObservation() == 0 and currentAction == 0):
 			#cur_reward = self.finalReward
 			return 1 - self._calcReward()
-		elif(self.getObservation()[0] == 2 and currentAction == 1):
+		elif(self.getObservation() == 2 and currentAction == 1):
 			#cur_reward = self.finalReward
 			return 1 - self._calcReward()
-		elif(self.getObservation()[0] == 1 and currentAction == 2):
+		elif(self.getObservation() == 1 and currentAction == 2):
 			#cur_reward = self.finalReward
 			return 1 - self._calcReward()
-		elif(self.getObservation()[0] == 2 and currentAction == 2):
+		elif(self.getObservation() == 2 and currentAction == 2):
 			#cur_reward = self.bangPenalty
 			return 1 - self._calcReward()
-		elif(self.getObservation()[0] == 1 and currentAction == 1):
+		elif(self.getObservation() == 1 and currentAction == 1):
 			#cur_reward = self.bangPenalty
 			return 1 - self._calcReward()
 		else:
@@ -58,7 +59,7 @@ class Plan(Task):
 			return 1 - self._calcReward()
 
 		#return cur_reward
-		#return 1 - self._calcReward()
+		return 1 - self._calcReward()
 	
 	def _calcReward(self):
 		

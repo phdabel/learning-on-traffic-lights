@@ -2,15 +2,17 @@ from traci import trafficlights
 from traci import lane
 from traci import edge
 from pybrain.rl.agents import LearningAgent
-
+from trafficlights_env.trafficlights import TrafficLights
+import random
+from random import choice
 
 class LowLevelAgent(LearningAgent):
 	
 	id = None
 	horizontal_edge = None
 	vertical_edge = None
-	horizontalLoad = 0
-	verticalLoad = 0
+	horizontalLoad = []
+	verticalLoad = []
 	averageVertical = []
 	averageHorizontal = []
 	
@@ -23,8 +25,11 @@ class LowLevelAgent(LearningAgent):
 		LearningAgent.__init__(self, module, learner)
 		
 	def getAction(self):
-		action = LearningAgent.getAction(self)		
+		#action = LearningAgent.getAction(self)
+		action = random.choice(TrafficLights.actions)
+		
 		self.lastaction = action
+		
 		return action
 	
 	def setHorizontalEdge(self, horizontal_edge):
@@ -34,22 +39,40 @@ class LowLevelAgent(LearningAgent):
 		self.vertical_edge = vertical_edge
 	
 	def verifyVerticalLoad(self):
-		self.verticalLoad += edge.getLastStepHaltingNumber(self.vertical_edge)
+		ct = edge.getLastStepHaltingNumber(self.vertical_edge)
+		if(ct != 0):
+			self.verticalLoad.append(ct)
 		
 	def verifyHorizontalLoad(self):
-		self.horizontalLoad += edge.getLastStepHaltingNumber(self.horizontal_edge)
+		ct = edge.getLastStepHaltingNumber(self.horizontal_edge)
+		if(ct != 0):
+			self.horizontalLoad.append(ct)
 	
-	def averageVerticalLoad(self, numSteps=1):
-		avg = self.verticalLoad / numSteps
-		self.verticalLoad = 0
-		self.averageVertical.append(avg)
-		return avg
+	def averageVerticalLoad(self):
+		avg = 0
+		for x in self.verticalLoad:
+			avg += x
+		if(len(self.verticalLoad) != 0):
+			newAvg = avg / len(self.verticalLoad)
+		else:
+			newAvg = 0
+		self.verticalLoad = []
+		
+		self.averageVertical.append(newAvg)
+		return newAvg
 
-	def averageHorizontalLoad(self, numSteps = 1):
-		avg = self.horizontalLoad / numSteps
-		self.horizontalLoad = 0
-		self.averageHorizontal.append(avg)
-		return avg
+	def averageHorizontalLoad(self):
+		avg = 0
+		for x in self.horizontalLoad:
+			avg += x
+		if(len(self.horizontalLoad) != 0):
+			newAvg = avg / len(self.horizontalLoad)
+		else:
+			newAvg = 0
+		
+		self.horizontalLoad = []
+		self.averageHorizontal.append(newAvg)
+		return newAvg
 	
 	def getLastAverageHorizontal(self):
 		return self.averageHorizontal[self.averageHorizontal.__len__() - 1]
