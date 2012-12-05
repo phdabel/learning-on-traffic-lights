@@ -34,14 +34,13 @@ class TrafficLights(Environment):
 			
 		if (lastVPerCent - lastHPerCent) > 0.2:
 			#print "Percentual Vertical %f e Horizontal %f" % (lastVPerCent, lastHPerCent)
-			return 1
+			return [1]
 		elif (lastHPerCent - lastVPerCent) > 0.2:
 			#print "Percentual Vertical %f e Horizontal %f" % (lastVPerCent, lastHPerCent)
-			return 2
+			return [2]
 		else:
 			#print "Percentual Vertical %f e Horizontal %f" % (lastVPerCent, lastHPerCent)
-			return 0
-	
+			return [0]	
 	def performAction(self, trafficlight, action):
 		acao = int(action)
 		traci.trafficlights.setProgram(trafficlight.id,str(acao))

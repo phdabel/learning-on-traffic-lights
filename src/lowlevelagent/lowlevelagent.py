@@ -10,11 +10,14 @@ class LowLevelAgent(LearningAgent):
 	
 	id = None
 	horizontal_edge = None
+	tolerance = None
 	vertical_edge = None
 	horizontalLoad = []
 	verticalLoad = []
 	averageVertical = []
 	averageHorizontal = []
+	nextAction = None
+	expectedReward = None
 	
 	def __init__(self, _id, module, learner=None):
 		#define variaveis da class
@@ -22,15 +25,36 @@ class LowLevelAgent(LearningAgent):
 		self.horizontal_edge = lane.getEdgeID(trafficlights.getControlledLanes(self.id)[0])
 		self.vertical_edge = lane.getEdgeID(trafficlights.getControlledLanes(str(_id))[2])
 		#define variaveis da classe pai
+		self.horizontalLoad = []
+		self.verticalLoad = []
+		self.averageHorizontal = []
+		self.averageVertical = []
+		self.nextAction = None
+		self.expectedReward = None
 		LearningAgent.__init__(self, module, learner)
-		
+	
+	def performNextAction(self, _action, _eReward):
+		self.nextAction = _action
+		self.expectedReward = _eReward
+	
+	def setTolerance(self, _tolerance):
+		self.tolerance = _tolerance
+	
 	def getAction(self):
-		#action = LearningAgent.getAction(self)
-		action = random.choice(TrafficLights.actions)
 		
-		self.lastaction = action
+		if(self.nextAction == None):
+			
+			action = LearningAgent.getAction(self)
+			#action = random.choice(TrafficLights.actions)
 		
-		return action
+			self.lastaction = action
+		
+			return action
+		else:
+			action = self.nextAction
+			self.lastaction = action
+			self.nextAction = None
+			return action
 	
 	def setHorizontalEdge(self, horizontal_edge):
 		self.horizontal_edge = horizontal_edge

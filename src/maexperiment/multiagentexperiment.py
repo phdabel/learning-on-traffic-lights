@@ -43,7 +43,7 @@ class MultiAgentExperiment(Experiment):
             self.agents[i].giveReward(reward)
             self.agents[i].learn()
             self.agents[i].reset()
-            
+     
             
             
 

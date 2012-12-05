@@ -29,9 +29,9 @@ if __name__ == '__main__':
     traci.init()
     route = Routes()
     route.setFile("net")
-    probH = 0.1
-    probV = 0.3
-    
+    probH = 0.1#0.1
+    probV = 0.3#0.3
+    _alpha = 0.5
     #definicao do plot
     plt = LinePlot()
     plt.addLabelPlot(['Veiculos Parados', 'Total'])
@@ -48,8 +48,8 @@ if __name__ == '__main__':
     # plan 1 -> 18v-42h
     # plan 2 -> 42v-18h
     agent = []
-    learner = [] #Q(0.8,0.4)
-    super = []
+    learner = []
+    supervisor = []
     #learner._setExplorer(BoltzmannExplorer())
 
     #definir Q-Learning Agent
@@ -75,11 +75,12 @@ if __name__ == '__main__':
     #av_table.initialize(0.)
     
     for tls in trafficlightsids:
-        learner.append(Q(0.5,0.))
+        learner.append(Q(_alpha,0.))
         learner[ct]._setExplorer(BoltzmannExplorer(500))
         av_table.append(ActionValueTable(3,3))
         av_table[ct].initialize(0.)
         agent.append(LowLevelAgent(tls, av_table[ct], learner[ct]))
+        agent[ct].setTolerance(0.1)
         ct += 1
     
     
@@ -89,17 +90,17 @@ if __name__ == '__main__':
     cts = 0
     for a in agent:
         if(ct == 1):
-            super.append(SupervisorAgent(0.8))
-            super[cts].addLowLevelAgent(a)
+            supervisor.append(SupervisorAgent(cts, _alpha))
+            supervisor[cts].addLowLevelAgent(a)
             ct += 1
         elif(ct == 2):
-            super[cts].addLowLevelAgent(a)
-            ct +=1
+            supervisor[cts].addLowLevelAgent(a)
+            ct += 1  
         elif(ct == 3):
-            super[cts].addLowLevelAgent(a)
-            ct = 0
+            supervisor[cts].addLowLevelAgent(a)
+            ct = 1
             cts += 1
-
+        
 
     #definir ambiente
     env = TrafficLights()
@@ -123,23 +124,35 @@ if __name__ == '__main__':
     
     carCount = 0
     
-    
+    rotas = route.getRoutes()
+        
     for i in range(8000):
         ct += 1
         #quantidade de carros que serao adicionados durante um simulation step
         addCar = 1
-        rota = route.getRandomRoute()
-        if( (rota[0]) in ['1','2','3','4','5','6','7','8']):
+        
+        for r in rotas:
+            if(r[0] in ['1','2','3','4','5','6','7','8']):
+                if(random.random() <= probH):
+                    Vehicle(str(i)+r[0], r[0])
+                    carCount += 1
+            else:
+                if(random.random() <= probV):
+                    Vehicle(str(i)+r[0], r[0])
+                    carCount +=1
+        
+        #rota = route.getRandomRoute()
+        #if( (rota[0]) in ['1','2','3','4','5','6','7','8']):
             
-            if(random.random() <= probH):
-                for aC in range(addCar):
-                    Vehicle(str(i)+carro[aC], rota[0])
-                    carCount += 1
-        else:
-            if(random.random() <= probV):
-                for aC in range(addCar):
-                    Vehicle(str(i)+carro[aC], rota[0])
-                    carCount += 1
+        #    if(random.random() <= probH):
+        #        for aC in range(addCar):
+        #            Vehicle(str(i)+carro[aC], rota[0])
+        #        carCount += 1
+        #else:
+        #    if(random.random() <= probV):
+        #        for aC in range(addCar):
+        #            Vehicle(str(i)+carro[aC], rota[0])
+        #        carCount += 1
                     
         traci.simulationStep()
         for a in agent:
@@ -152,9 +165,17 @@ if __name__ == '__main__':
                 a.averageHorizontalLoad()
                 
             ct = 0
-            e.doInteractionsAndLearn(1)
-            for s in super:
-                s.observeLowLevel()
+            
+            if(i <= 3000):
+                e.doInteractionsAndLearn(1)
+                for s in supervisor:                    
+                    s.observeLowLevel()
+            elif(i <= 5000):
+                for s in supervisor:
+                    s.getObservationAndIndicate()
+                e.doInteractionsAndLearn(1)
+            elif(i <= 8000):
+                print oi
               
         #plotagem - nao mexer e deixar no final          
         plt.addXValue(i)
