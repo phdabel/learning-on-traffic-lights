@@ -52,18 +52,26 @@ class LowLevelAgent(LearningAgent):
 		
 			return action
 		else:
-			#indicacao do supervisor
-			if( (self.expectedReward * (1 + self.tolerance)) > self.module.getActionValue(self.nextAction)):
+			#indicacao do supervisor com tolerancia
+			if(self.tolerance != None):
+				if( (self.expectedReward * (1 + self.tolerance)) > self.module.getActionValue(self.nextAction)):
 				
+					action = self.nextAction
+					self.lastaction = action
+					self.nextAction = None
+					return action
+				else:
+					#acao independente
+					action = LearningAgent.getAction(self)
+					self.lastaction = action
+					return action
+			#indicacao do supervisor sem tolerancia
+			else:
 				action = self.nextAction
 				self.lastaction = action
 				self.nextAction = None
 				return action
-			else:
-				#acao independente
-				action = LearningAgent.getAction(self)
-				self.lastaction = action
-				return action
+				
 	
 	def setHorizontalEdge(self, horizontal_edge):
 		self.horizontal_edge = horizontal_edge

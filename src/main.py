@@ -193,7 +193,26 @@ if __name__ == '__main__':
     
         veiculos_parados.append(veiculosParados)
         total_veiculos.append(totalVeiculos)
-
+    ct = 1
+    med1 = 0.0
+    med2 = 0.0
+    med3 = 0.0
+    for v in veiculos_parados:
+        if(ct <= 3000):
+            med1 += v
+        elif(ct <= 5000):
+            med2 += v
+        elif(ct <= 8000):
+            med3 += v
+    medFase1 = float(med1) / float(3000)
+    medFase2 = float(med2) / float(2000)
+    medFase3 = float(med3) / float(3000)
+    
+    print "Media de Carros Parados:"
+    print "Fase 1: %f" % medFase1
+    print "Fase 2: %f" % medFase2
+    print "Fase 3: %f" % medFase3
+     
     plt.addYValues(veiculos_parados)
     plt.addYValues(total_veiculos)
     plt.showPlot()
