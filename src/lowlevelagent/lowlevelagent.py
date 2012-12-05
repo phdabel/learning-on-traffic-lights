@@ -31,6 +31,7 @@ class LowLevelAgent(LearningAgent):
 		self.averageVertical = []
 		self.nextAction = None
 		self.expectedReward = None
+		self.tolerance = None
 		LearningAgent.__init__(self, module, learner)
 	
 	def performNextAction(self, _action, _eReward):
@@ -42,19 +43,27 @@ class LowLevelAgent(LearningAgent):
 	
 	def getAction(self):
 		
+		#pega acao com Boltzmann ou Q-Learning
 		if(self.nextAction == None):
 			
 			action = LearningAgent.getAction(self)
-			#action = random.choice(TrafficLights.actions)
 		
 			self.lastaction = action
 		
 			return action
 		else:
-			action = self.nextAction
-			self.lastaction = action
-			self.nextAction = None
-			return action
+			#indicacao do supervisor
+			if( (self.expectedReward * (1 + self.tolerance)) > self.module.getActionValue(self.nextAction)):
+				
+				action = self.nextAction
+				self.lastaction = action
+				self.nextAction = None
+				return action
+			else:
+				#acao independente
+				action = LearningAgent.getAction(self)
+				self.lastaction = action
+				return action
 	
 	def setHorizontalEdge(self, horizontal_edge):
 		self.horizontal_edge = horizontal_edge

@@ -80,7 +80,6 @@ if __name__ == '__main__':
         av_table.append(ActionValueTable(3,3))
         av_table[ct].initialize(0.)
         agent.append(LowLevelAgent(tls, av_table[ct], learner[ct]))
-        agent[ct].setTolerance(0.1)
         ct += 1
     
     
@@ -163,19 +162,26 @@ if __name__ == '__main__':
             for a in agent:
                 a.averageVerticalLoad()
                 a.averageHorizontalLoad()
+                if(i > 5000):
+                    a.setTolerance(0.1)
                 
             ct = 0
             
             if(i <= 3000):
+                #fase 1
                 e.doInteractionsAndLearn(1)
                 for s in supervisor:                    
                     s.observeLowLevel()
             elif(i <= 5000):
+                #fase 2
                 for s in supervisor:
                     s.getObservationAndIndicate()
                 e.doInteractionsAndLearn(1)
             elif(i <= 8000):
-                print oi
+                #fase 3
+                e.doInteractionsAndLearn(1)
+                for s in supervisor:                    
+                    s.observeLowLevel()
               
         #plotagem - nao mexer e deixar no final          
         plt.addXValue(i)
